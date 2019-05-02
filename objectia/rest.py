@@ -2,10 +2,10 @@ import requests
 import logging
 import json
 
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.parse import quote
+# try:
+#    from urllib import quote
+# except ImportError:
+#    from urllib.parse import quote
 
 from objectia.errors import APIConnectionError, APITimeoutError, ResponseError
 from objectia.version import VERSION
@@ -59,7 +59,7 @@ class RestClient:
         logging.debug("Sending HTTP request")
         # logging.debug("{0} {1}".format(method, path))
 
-        url = self.api_base_url + quote(path)
+        url = self.api_base_url + path  # quote(path, safe=',')
 
         headers = {
             "Authorization": "Bearer {0}".format(self.api_key),
@@ -98,4 +98,7 @@ class RestClient:
                 else:
                     message = "Internal server error"
             raise ResponseError(resp.status_code, message)
-        return resp
+
+        # Parse JSON, return data only
+        result = json.loads(resp.content)
+        return result["data"]

@@ -1,6 +1,3 @@
-from objectia.models import Usage
-
-
 class UsageAPI(object):
     """
     Usage API
@@ -9,5 +6,4 @@ class UsageAPI(object):
         self.client = objectia.client
 
     def get(self):
-        resp = self.client.get("/usage")
-        return Usage(self, resp)
+        return self.client.get("/usage")

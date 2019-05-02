@@ -1,6 +1,3 @@
-from objectia.models import GeoLocation
-
-
 class GeoLocationAPI(object):
     """
     Geolocation API
@@ -9,13 +6,10 @@ class GeoLocationAPI(object):
         self.client = objectia.client
 
     def get(self, ip):
-        resp = self.client.get("/geoip/{0}".format(ip))
-        return GeoLocation(self, resp)
+        return self.client.get("/geoip/{0}".format(ip))
 
-    def getCurrent(self, ip):
-        resp = self.client.get("/geoip/myip")
-        return GeoLocation(self, resp)
+    def get_current(self):
+        return self.client.get("/geoip/myip")
 
-    def getBulk(self, ip_list):
-        resp = self.client.get("/geoip/{0}".format(ip_list))
-        return GeoLocation(self, resp)
+    def get_bulk(self, ip_list):
+        return self.client.get("/geoip/{0}".format(ip_list))
