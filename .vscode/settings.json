@@ -1,0 +1,26 @@
+{
+  "files.exclude": {
+    "**/*.pyc": true,
+    "**/*.map": true,
+    "**/*__pycache__": true,
+    "**/*.pytest_cache": true,
+    "**/.coverage": true
+  },
+  "python.pythonPath": "/usr/local/bin/python3",
+  // Linting
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--ignore=E501",
+//    "--ignore=E201,E202,E203,E211,E221,E222,E241,E251,E271,E272,E501"
+  ],
+  // Testing
+  "python.testing.pyTestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pyTestArgs": [
+    "--exitfirst",
+    "--verbose",
+  ],
+}

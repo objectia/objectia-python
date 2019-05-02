@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+
+#before_install:
+#  - npm -g install git+https://git@github.com/objectia/objectia-mock-server.git
+#  - NODE_VER=`node --version`
+#  - node /home/travis/.nvm/versions/node/$NODE_VER/lib/node_modules/objectia-mock-server/lib/index.js &
+
+install:
+  - pip install -r requirements.txt
+  - pip install -r tests/requirements.txt
+
+script:
+  - pytest -v --cov=objectia
+
+after_success:
+  - codecov
