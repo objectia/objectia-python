@@ -30,7 +30,7 @@ class GeoLocation(Entity):
     GeoLocation model
     """
     def __init__(self, resource, response):
-        super(Usage, self).__init__(resource, response)
+        super(GeoLocation, self).__init__(resource, response)
         self.id = None
         if (isinstance(self.content, dict) and "data" in self.content):
             self.country_code = self.content["data"].get("country_code")

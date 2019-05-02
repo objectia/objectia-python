@@ -57,6 +57,7 @@ class RestClient:
         Execute a HTTP request
         """
         logging.debug("Sending HTTP request")
+        # logging.debug("{0} {1}".format(method, path))
 
         url = self.api_base_url + quote(path)
 

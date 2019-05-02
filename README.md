@@ -33,11 +33,9 @@ Install from source with:
 The library needs to be configured with your account's API key. Get your own API key by signing up for a free [Objectia account](https://objectia.com).
 
 ``` python
-import objectia
+from objectia import Client
+from objectia.models import GeoLocation
 
-api_key = "YOUR-API-KEY"
-
-client = objectia.Client(api_key=api_key)
-
+client = Client(api_key="YOUR-API-KEY")
 location = client.geoip.get("8.8.8.8")
 ```
