@@ -1,7 +1,7 @@
 Python client for Objectia API
 ==============================
 
-A Python library for the Objectia API API.
+A Python library for the Objectia API.
 
 
 Setup
@@ -21,9 +21,9 @@ Setting up a Objectia API account
 
 Sign up for Objectia at https://objectia.com
 
-s
-Using the Objectia API API
---------------------------
+
+Using the Objectia API
+----------------------
 
 Documentation for the Python client can be found alongside the other API clients here:
 

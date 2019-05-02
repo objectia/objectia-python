@@ -1,6 +1,7 @@
 from objectia.rest import RestClient
 from objectia.usage_api import UsageAPI
 from objectia.geoip_api import GeoLocationAPI
+from objectia.version import VERSION
 
 API_BASE_URL = "https://api.objectia.com/rest/v1"
 DEFAULT_TIMEOUT = 30  # seconds
@@ -24,6 +25,9 @@ class Client(object):
         # Attach the APIs
         self._usage_api = UsageAPI(self)
         self._geoip_api = GeoLocationAPI(self)
+
+    def version(self):
+        return VERSION
 
     @property
     def usage(self):

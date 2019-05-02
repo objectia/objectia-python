@@ -85,6 +85,7 @@ class RestClient:
             try:
                 content = resp.json()
                 message = content["message"]
+                code = content["code"]
             except (KeyError, ValueError):
                 # Not JSON response, or message set
                 if resp.status_code == 501:
@@ -97,7 +98,7 @@ class RestClient:
                     message = "Gateway timeout"
                 else:
                     message = "Internal server error"
-            raise ResponseError(resp.status_code, message)
+            raise ResponseError(resp.status_code, msg=message, code=code)
 
         # Parse JSON, return data only
         result = json.loads(resp.content)

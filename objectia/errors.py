@@ -23,6 +23,7 @@ class ResponseError(APIError):
     """
     Exception which is thrown when response status code is not 200 or 201
     """
-    def __init__(self, status, msg=""):
+    def __init__(self, status, msg="", code=""):
         self.status = status
         self.msg = msg
+        self.code = code

@@ -2,11 +2,10 @@
 test:
 	pytest -v
 
-release-test:
-	python3 setup.py sdist bdist_wheel upload -r pypitest
-
 deploy:
-	python3 setup.py sdist bdist_wheel upload
+	rm -f ./dist/*
+	python3 setup.py sdist bdist_wheel
+	twine upload dist/*
 
 install: requirements
 

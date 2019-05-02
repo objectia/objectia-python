@@ -38,7 +38,7 @@ Install from source with:
 
 The library needs to be configured with your account's API key. Get your own API key by signing up for a free [Objectia account](https://objectia.com).
 
-``` python
+```python
 import objectia
 
 client = objectia.Client(api_key="YOUR-API-KEY")

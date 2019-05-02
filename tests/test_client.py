@@ -1,12 +1,18 @@
 import unittest
 import tests.config as config
 from objectia import Client
+from objectia.errors import ResponseError
 
 
 class ClientTest(unittest.TestCase):
 
     def setUp(self):
         self.client = Client(api_key=config.API_KEY)
+
+    def test_get_version(self):
+        v = self.client.version()
+        self.assertIsNotNone(v)
+        print("Version: {0}".format(v))
 
     def test_client_without_api_key(self):
         with self.assertRaises(ValueError):
@@ -22,13 +28,23 @@ class ClientTest(unittest.TestCase):
         self.assertIsNotNone(location)
         print("Country code: {0}".format(location["country_code"]))
 
+    def test_get_geoip_invalid_ip(self):
+        try:
+            self.client.geoip.get("288.8.8.8")
+        except ValueError:
+            pass
+        except ResponseError as e:
+            self.assertEqual(e.code, "err-invalid-ip")
+
     def test_get_geoip_myip(self):
         location = self.client.geoip.get_current()
         self.assertIsNotNone(location)
 
     def test_get_geoip_bulk(self):
-        location = self.client.geoip.get_bulk("8.8.8.8,google.com")
-        self.assertIsNotNone(location)
+        locations = self.client.geoip.get_bulk("8.8.8.8,google.com")
+        self.assertIsNotNone(locations)
+        for i in range(len(locations)):
+            print("Country code: {0}".format(locations[i]["country_code"]))
 
 
 if __name__ == "__main__":
