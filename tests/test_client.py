@@ -28,6 +28,12 @@ class ClientTest(unittest.TestCase):
         self.assertIsNotNone(location)
         print("Country code: {0}".format(location["country_code"]))
 
+    def test_get_geoip_with_options(self):
+        location = self.client.geoip.get("8.8.8.8", fields="country_code,hostname", hostname=True)
+        self.assertIsNotNone(location)
+        print("Country code: {0}".format(location["country_code"]))
+        print("Host name: {0}".format(location["hostname"]))
+
     def test_get_geoip_invalid_ip(self):
         try:
             self.client.geoip.get("288.8.8.8")
@@ -42,6 +48,12 @@ class ClientTest(unittest.TestCase):
 
     def test_get_geoip_bulk(self):
         locations = self.client.geoip.get_bulk("8.8.8.8,google.com")
+        self.assertIsNotNone(locations)
+        for i in range(len(locations)):
+            print("Country code: {0}".format(locations[i]["country_code"]))
+
+    def test_get_geoip_bulk2(self):
+        locations = self.client.geoip.get_bulk(["8.8.8.8,google.com"])
         self.assertIsNotNone(locations)
         for i in range(len(locations)):
             print("Country code: {0}".format(locations[i]["country_code"]))
