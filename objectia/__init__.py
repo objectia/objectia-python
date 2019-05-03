@@ -20,11 +20,11 @@ class Client(object):
         self.timeout = kwargs.get("timeout", DEFAULT_TIMEOUT)
 
         # Create the REST client
-        self.client = RestClient(self.api_key, self.api_base_url, self.timeout)
+        self.rest_client = RestClient(self.api_key, self.api_base_url, self.timeout)
 
         # Attach the APIs
-        self._usage_api = UsageAPI(self)
-        self._geoip_api = GeoLocationAPI(self)
+        self._usage_api = UsageAPI(self.rest_client)
+        self._geoip_api = GeoLocationAPI(self.rest_client)
 
     def version(self):
         return VERSION

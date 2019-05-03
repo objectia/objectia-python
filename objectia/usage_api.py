@@ -2,8 +2,8 @@ class UsageAPI(object):
     """
     Usage API
     """
-    def __init__(self, objectia):
-        self.client = objectia.client
+    def __init__(self, rest_client):
+        self.rest_client = rest_client
 
     def get(self):
-        return self.client.get("/usage")
+        return self.rest_client.get("/usage")

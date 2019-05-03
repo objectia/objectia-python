@@ -2,12 +2,12 @@ class GeoLocationAPI(object):
     """
     Geolocation API
     """
-    def __init__(self, objectia):
-        self.client = objectia.client
+    def __init__(self, rest_client):
+        self.rest_client = rest_client
 
     def get(self, ip, **kwargs):
         query = self._query(**kwargs)
-        return self.client.get("/geoip/{0}{1}".format(ip, query))
+        return self.rest_client.get("/geoip/{0}{1}".format(ip, query))
 
     def get_current(self, **kwargs):
         return self.get("myip", **kwargs)
