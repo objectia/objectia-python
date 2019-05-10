@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/objectia/objectia-python/branch/master/graph/badge.svg)](https://codecov.io/gh/objectia/objectia-python)
 [![Python](https://img.shields.io/pypi/pyversions/setuptools.svg)]()
 
-Python client for Objectia API
+Python client for [Objectia API](https://objectia.com)&reg;
 
 ## Documentation
 
