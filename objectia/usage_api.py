@@ -6,4 +6,4 @@ class UsageAPI(object):
         self.rest_client = rest_client
 
     def get(self):
-        return self.rest_client.get("/usage")
+        return self.rest_client.get("/v1/usage")

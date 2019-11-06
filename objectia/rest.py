@@ -1,6 +1,7 @@
 import requests
 import logging
 import json
+import string
 
 # try:
 #    from urllib import quote
@@ -10,6 +11,7 @@ import json
 from objectia.errors import APIConnectionError, APITimeoutError, ResponseError
 from objectia.version import VERSION
 
+BOUNDARY_CHARS = string.digits + string.ascii_letters
 USER_AGENT = "objectia-python/{0}".format(VERSION)
 
 
@@ -22,37 +24,37 @@ class RestClient:
         self.api_base_url = api_base_url
         self.timeout = timeout
 
-    def get(self, path):
+    def get(self, path, headers={}):
         """
         Execute a HTTP GET
         """
-        return self.execute("GET", path)
+        return self.execute("GET", path, headers=headers)
 
-    def post(self, path, data):
+    def post(self, path, data, headers={}):
         """
         Execute a HTTP POST
         """
-        return self.execute("POST", path, data)
+        return self.execute("POST", path, data, headers)
 
-    def patch(self, path, data):
+    def patch(self, path, data, headers={}):
         """
         Execute a HTTP PATCH
         """
-        return self.execute("PATCH", path, data)
+        return self.execute("PATCH", path, data, headers)
 
-    def put(self, path, data):
+    def put(self, path, data, headers={}):
         """
         Execute a HTTP PUT
         """
-        return self.execute("PUT", path, data)
+        return self.execute("PUT", path, data, headers)
 
-    def delete(self, path):
+    def delete(self, path, headers={}):
         """
         Execute a HTTP DELETE
         """
-        return self.execute("DELETE", path)
+        return self.execute("DELETE", path, headers=headers)
 
-    def execute(self, method, path, data={}):
+    def execute(self, method, path, data=None, headers={}):
         """
         Execute a HTTP request
         """
@@ -61,21 +63,22 @@ class RestClient:
 
         url = self.api_base_url + path  # quote(path, safe=',')
 
-        headers = {
+        allHeaders = {
             "Authorization": "Bearer {0}".format(self.api_key),
             "Accept": "application/json",
-            "Content-Type": "application/json",
             "User-Agent": USER_AGENT
         }
+        allHeaders.update(headers)
 
         try:
             params = {}
-            payload = None
             if method == "GET":
-                params.update(data)
+                if data is not None:
+                    params.update(data)
             elif method in ["POST", "PUT", "PATCH"]:
-                payload = json.dumps(data)
-            resp = requests.request(method, url, headers=headers, params=params, data=payload, timeout=self.timeout)
+                if isinstance(data, dict):
+                    data = json.dumps(data)
+            resp = requests.request(method, url, headers=allHeaders, params=params, data=data, timeout=self.timeout)
         except requests.exceptions.Timeout as e:
             raise APITimeoutError("Request timed out: " + repr(e))
         except requests.exceptions.RequestException as e:

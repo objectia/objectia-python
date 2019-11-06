@@ -58,6 +58,17 @@ class ClientTest(unittest.TestCase):
         for i in range(len(locations)):
             print("Country code: {0}".format(locations[i]["country_code"]))
 
+    def test_send_mail(self):
+        message = {
+            "from": "ok@demo2.org",
+            "to": ["ok@demo2.org"],
+            "subject": "Test",
+            "text": "This is just a test",
+            "attachments": ["/Users/otto/me.png"]
+        }
+        receipt = self.client.mail.send(message)
+        self.assertIsNotNone(receipt)
+
 
 if __name__ == "__main__":
     unittest.main()

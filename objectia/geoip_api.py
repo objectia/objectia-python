@@ -7,7 +7,7 @@ class GeoLocationAPI(object):
 
     def get(self, ip, **kwargs):
         query = self._query(**kwargs)
-        return self.rest_client.get("/geoip/{0}{1}".format(ip, query))
+        return self.rest_client.get("/v1/geoip/{0}{1}".format(ip, query))
 
     def get_current(self, **kwargs):
         return self.get("myip", **kwargs)

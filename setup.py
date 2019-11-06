@@ -24,9 +24,10 @@ setup(
     author_email="hello@objectia.com",
     url="http://github.com/objectia/objectia-python",
     license="MIT",
-    keywords=["objectia", "api", "geoip", "geolocation"],
+    keywords=["objectia", "api", "geoip", "geolocation", "mail"],
     install_requires=[
         "requests>=2.5.0",
+        "jsonschema>=3.1.1",
         "PyJWT>=1.6.1"
     ],
     packages=["objectia"],
@@ -45,6 +46,7 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Libraries :: Python Modules"
     ]
 )

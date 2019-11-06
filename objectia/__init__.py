@@ -1,9 +1,10 @@
 from objectia.rest import RestClient
 from objectia.usage_api import UsageAPI
 from objectia.geoip_api import GeoLocationAPI
+from objectia.mail_api import MailAPI
 from objectia.version import VERSION
 
-API_BASE_URL = "https://api.objectia.com/rest/v1"
+API_BASE_URL = "https://api.objectia.com"
 DEFAULT_TIMEOUT = 30  # seconds
 
 
@@ -25,6 +26,7 @@ class Client(object):
         # Attach the APIs
         self._usage_api = UsageAPI(self.rest_client)
         self._geoip_api = GeoLocationAPI(self.rest_client)
+        self._mail_api = MailAPI(self.rest_client)
 
     def version(self):
         return VERSION
@@ -42,3 +44,10 @@ class Client(object):
         GeoLocation API
         """
         return self._geoip_api
+
+    @property
+    def mail(self):
+        """
+        Mail API
+        """
+        return self._mail_api
