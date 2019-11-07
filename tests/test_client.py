@@ -63,11 +63,11 @@ class ClientTest(unittest.TestCase):
             "from": "ok@demo2.org",
             "to": ["ok@demo2.org", "okey@demo2.org"],
             "subject": "Test",
-            "text": "This is just a test"
-            # "attachments": ["/Users/otto/me.png"]
+            "text": "This is just a test",
+            "attachments": ["/Users/otto/me.png"]
         }
         receipt = self.client.mail.send(message)
-        self.assertIsNone(receipt)
+        self.assertIsNotNone(receipt)
 
 
 if __name__ == "__main__":
