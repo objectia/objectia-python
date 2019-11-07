@@ -11,9 +11,12 @@ class MailAPI(object):
 
     def send(self, message):
         jsonschema.validate(message, schema=schema)
-        files = message["attachments"]  # take out of message
-        message["attachments"] = {}     # clear
+        files = []
+        if "attachments" in message.keys():
+            files = message["attachments"]  # take out of message
+            message["attachments"] = {}     # clear
         body, headers = encode(message, files)
+        print(body)
         return self.rest_client.post("/v1/mail/send", body, headers)
 
 
