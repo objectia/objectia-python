@@ -1,13 +1,13 @@
 # objectia-python 
 [![Build Status](https://travis-ci.org/objectia/objectia-python.svg?branch=master)](https://travis-ci.org/objectia/objectia-python)
-[![codecov](https://codecov.io/gh/objectia/objectia-python/branch/master/graph/badge.svg)](https://codecov.io/gh/objectia/objectia-python)
+<!--[![codecov](https://codecov.io/gh/objectia/objectia-python/branch/master/graph/badge.svg)](https://codecov.io/gh/objectia/objectia-python)-->
 [![Python](https://img.shields.io/pypi/pyversions/setuptools.svg)]()
 
 Python client for [Objectia API](https://objectia.com)&reg;
 
 ## Documentation
 
-See the [Python API docs](https://docs.objectia.com/guide/python.html).
+See the [Python API docs](https://docs.objectia.com/python/).
 
 ## Installation
 
@@ -31,7 +31,7 @@ Install from source with:
 ```
 ### Requirements
 
-* Python 2.7 or Python 3.4+
+* Python Python 3.4 or later
 
 
 ## Usage
