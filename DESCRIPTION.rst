@@ -27,4 +27,4 @@ Using the Objectia API
 
 Documentation for the Python client can be found alongside the other API clients here:
 
-- https://docs.objectia.com/guide/python.html
+- https://docs.objectia.com/python/
